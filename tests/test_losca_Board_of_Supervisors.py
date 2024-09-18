@@ -69,8 +69,8 @@ def test_time_notes():
 def test_id():
     assert (
         parsed_items[0]["id"]
-        == "losca_Board_of_Supervisors/202409170930/x/policy_presentations_and_public_hearing_meeting"
-    )  # noqa
+        == "losca_Board_of_Supervisors/202409170930/x/policy_presentations_and_public_hearing_meeting"  # noqa
+    )
 
 
 def test_status():
@@ -96,7 +96,7 @@ def test_location():
 def test_source():
     assert (
         parsed_items[0]["source"] == "https://bos.lacounty.gov/board-meeting-agendas/"
-    )  # noqa
+    )
 
 
 def test_links():
