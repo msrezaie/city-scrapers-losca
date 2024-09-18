@@ -7,7 +7,7 @@ from dateutil.parser import parse
 class LoscaBoardOfSupervisorsSpider(CityScrapersSpider):
     name = "losca_Board_of_Supervisors"
     agency = "Los Angeles County Board of Supervisors"
-    timezone = "America/Chicago"
+    timezone = "America/Los_Angeles"
     start_urls = ["https://bos.lacounty.gov/board-meeting-agendas/"]
 
     def parse(self, response):
@@ -70,7 +70,7 @@ class LoscaBoardOfSupervisorsSpider(CityScrapersSpider):
         out = []
         links = item.css("a")
         for link in links:
-            title = link.css("a")[0].css("span::text").get()
+            title = link.css("span::text").get()
             href = link.css("::attr(href)").get()
             out.append({"title": title, "href": href})
         return out

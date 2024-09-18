@@ -28,34 +28,40 @@ def test_count():
     assert len(parsed_items) == 10
 
 
-def test_title():
-    assert parsed_items[0]["title"] == "Policy Presentations and Public Hearing Meeting"
-    assert parsed_items[1]["title"] == "Regular Board Meeting"
-    assert parsed_items[2]["title"] == "Public Hearing Meeting"
-    assert parsed_items[3]["title"] == "Regular Board Meeting"
-    assert parsed_items[4]["title"] == "Policy Presentations Meeting"
-    assert parsed_items[5]["title"] == "Regular Board Meeting"
-    assert parsed_items[6]["title"] == "Regular Board Meeting"
-    assert parsed_items[7]["title"] == "Regular Board Meeting"
-    assert parsed_items[8]["title"] == "Budget Deliberations Board Meeting"
-    assert parsed_items[9]["title"] == "Policy Presentations Meeting"
+@pytest.mark.parametrize("index, expected_title", [
+    (0, "Policy Presentations and Public Hearing Meeting"),
+    (1, "Regular Board Meeting"),
+    (2, "Public Hearing Meeting"),
+    (3, "Regular Board Meeting"),
+    (4, "Policy Presentations Meeting"),
+    (5, "Regular Board Meeting"),
+    (6, "Regular Board Meeting"),
+    (7, "Regular Board Meeting"),
+    (8, "Budget Deliberations Board Meeting"),
+    (9, "Policy Presentations Meeting"),
+])
+def test_title(index, expected_title):
+    assert parsed_items[index]["title"] == expected_title
 
 
 def test_description():
     assert parsed_items[0]["description"] == ""
 
 
-def test_start():
-    assert parsed_items[0]["start"] == datetime(2024, 9, 17, 9, 30)
-    assert parsed_items[1]["start"] == datetime(2024, 9, 10, 9, 30)
-    assert parsed_items[2]["start"] == datetime(2024, 8, 13, 11, 0)  # not 930am
-    assert parsed_items[3]["start"] == datetime(2024, 8, 6, 9, 30)
-    assert parsed_items[4]["start"] == datetime(2024, 7, 30, 9, 30)
-    assert parsed_items[5]["start"] == datetime(2024, 7, 23, 9, 30)
-    assert parsed_items[6]["start"] == datetime(2024, 7, 9, 9, 30)
-    assert parsed_items[7]["start"] == datetime(2024, 6, 25, 9, 30)
-    assert parsed_items[8]["start"] == datetime(2024, 6, 24, 9, 30)
-    assert parsed_items[9]["start"] == datetime(2024, 6, 18, 9, 30)
+@pytest.mark.parametrize("index, expected_start", [
+    (0, datetime(2024, 9, 17, 9, 30)),
+    (1, datetime(2024, 9, 10, 9, 30)),
+    (2, datetime(2024, 8, 13, 11, 0)),  # Only meeting not at 9:30 AM
+    (3, datetime(2024, 8, 6, 9, 30)),
+    (4, datetime(2024, 7, 30, 9, 30)),
+    (5, datetime(2024, 7, 23, 9, 30)),
+    (6, datetime(2024, 7, 9, 9, 30)),
+    (7, datetime(2024, 6, 25, 9, 30)),
+    (8, datetime(2024, 6, 24, 9, 30)),
+    (9, datetime(2024, 6, 18, 9, 30)),
+])
+def test_start(index, expected_start):
+    assert parsed_items[index]["start"] == expected_start
 
 
 def test_end():
@@ -72,18 +78,20 @@ def test_id():
         == "losca_Board_of_Supervisors/202409170930/x/policy_presentations_and_public_hearing_meeting"  # noqa
     )
 
-
-def test_status():
-    assert parsed_items[0]["status"] == "tentative"
-    assert parsed_items[1]["status"] == "passed"
-    assert parsed_items[2]["status"] == "passed"
-    assert parsed_items[3]["status"] == "passed"
-    assert parsed_items[4]["status"] == "passed"
-    assert parsed_items[5]["status"] == "passed"
-    assert parsed_items[6]["status"] == "passed"
-    assert parsed_items[7]["status"] == "passed"
-    assert parsed_items[8]["status"] == "passed"
-    assert parsed_items[9]["status"] == "passed"
+@pytest.mark.parametrize("index, expected_status", [
+    (0, "tentative"),
+    (1, "passed"),
+    (2, "passed"),
+    (3, "passed"),
+    (4, "passed"),
+    (5, "passed"),
+    (6, "passed"),
+    (7, "passed"),
+    (8, "passed"),
+    (9, "passed"),
+])
+def test_status(index, expected_status):
+    assert parsed_items[index]["status"] == expected_status
 
 
 def test_location():
