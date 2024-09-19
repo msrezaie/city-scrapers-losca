@@ -11,12 +11,7 @@ class LoscaBoardOfSupervisorsSpider(CityScrapersSpider):
     start_urls = ["https://bos.lacounty.gov/board-meeting-agendas/"]
 
     def parse(self, response):
-        """
-        `parse` should always `yield` Meeting items.
-
-        Change the `_parse_title`, `_parse_start`, etc methods to fit your scraping
-        needs.
-        """
+        """Parse meeting items from agency website."""
         location = {
             "name": "Kenneth Hahn Hall of Administration",
             "address": "500 West Temple Street, Room 381B, Los Angeles",
@@ -36,7 +31,7 @@ class LoscaBoardOfSupervisorsSpider(CityScrapersSpider):
                 time_notes="",
                 location=location,
                 links=self._parse_links(item),
-                source=self._parse_source(response),
+                source=response.url,
             )
 
             meeting["status"] = self._get_status(meeting)
@@ -74,7 +69,3 @@ class LoscaBoardOfSupervisorsSpider(CityScrapersSpider):
             href = link.css("::attr(href)").get()
             out.append({"title": title, "href": href})
         return out
-
-    def _parse_source(self, response):
-        """Parse or generate source."""
-        return response.url
