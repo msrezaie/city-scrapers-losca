@@ -1,3 +1,5 @@
+import re
+
 from city_scrapers_core.constants import BOARD
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
@@ -77,12 +79,17 @@ class LoscaBoardOfEdSpider(CityScrapersSpider):
         """
         Parse links. item.get() returns
         '...</title><link>https://www.lausd.org...EventDateID=73502<pubdate>...'
-        This string does not have a closing <link> tag even though the source
+        This string does not have a closing </link> tag even though the source
         response does. This causes item.css('link') to return an empty tag.
-        We must parse link another way. Chose to use split.
+        We must parse link another way. Try regex with split as fallback.
         """
-        split = item.get().split("<link>")[1]
-        link = split.split("<pubdate>")[0]
-        links = [{"title": "Meeting Details", "href": link}]
+        raw_html = item.get()
+        match = re.search(r"<link>(.*?)<", raw_html, re.DOTALL)
+        if match:
+            link = match.group(1).strip()
+        else:
+            # Fallback to double split if regex doesn't match
+            split = raw_html.split("<link>")[1]
+            link = split.split("<pubdate>")[0].strip()
 
-        return links
+        return [{"title": "Meeting Details", "href": link}]
