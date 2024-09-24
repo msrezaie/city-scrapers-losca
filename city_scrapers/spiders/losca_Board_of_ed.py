@@ -7,7 +7,7 @@ from dateutil.parser import parse
 class LoscaBoardOfEdSpider(CityScrapersSpider):
     name = "losca_Board_of_ed"
     agency = "Los Angeles Unified School District Board of Education"
-    timezone = "America/Chicago"
+    timezone = "America/Los_Angeles"
     # original URL was https://www.lausd.org/boe
     # they have an RSS feed. scrape that instead
     start_urls = [
