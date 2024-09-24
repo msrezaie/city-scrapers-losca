@@ -10,7 +10,7 @@ from city_scrapers.spiders.losca_Board_of_ed import LoscaBoardOfEdSpider
 
 test_response = file_response(
     join(dirname(__file__), "files", "losca_Board_of_ed.html"),
-    url="https://www.lausd.org/site/RSS.aspx?DomainID=1057&ModuleInstanceID=73805&PageID=18628&PMIID=0",
+    url="https://www.lausd.org/site/RSS.aspx?DomainID=1057&ModuleInstanceID=73805&PageID=18628&PMIID=0",  # noqa
 )
 spider = LoscaBoardOfEdSpider()
 
@@ -24,6 +24,7 @@ freezer.stop()
 
 def test_count():
     assert len(parsed_items) == 12
+
 
 def test_title():
     assert parsed_items[0]["title"] == "Greening Schools & Climate Resilience"
@@ -47,7 +48,10 @@ def test_time_notes():
 
 
 def test_id():
-    assert parsed_items[0]["id"] == "losca_Board_of_ed/202409241300/x/greening_schools_climate_resilience"
+    assert (
+        parsed_items[0]["id"]
+        == "losca_Board_of_ed/202409241300/x/greening_schools_climate_resilience"
+    )
 
 
 def test_status():
@@ -57,23 +61,30 @@ def test_status():
 def test_location():
     assert parsed_items[0]["location"] == {
         "name": "LAUSD Headquarters",
-        "address": "333 South Beaudry Avenue, Board Room, Los Angeles, CA 90017"
+        "address": "333 South Beaudry Avenue, Board Room, Los Angeles, CA 90017",
     }
 
 
 def test_source():
-    assert parsed_items[0]["source"] == "https://www.lausd.org/site/RSS.aspx?DomainID=1057&ModuleInstanceID=73805&PageID=18628&PMIID=0"
+    assert (
+        parsed_items[0]["source"]
+        == "https://www.lausd.org/site/RSS.aspx?DomainID=1057&ModuleInstanceID=73805&PageID=18628&PMIID=0"  # noqa
+    )
 
 
 def test_links():
-    assert parsed_items[0]["links"] == [{
-        "title": "Meeting Details",
-        "href": "https://www.lausd.org/site/Default.aspx?PageID=18628&amp;PageType=17&amp;DomainID=1057&amp;ModuleInstanceID=73805&amp;EventDateID=73502"
-    }]
-    assert parsed_items[1]["links"] == [{
-        "title": "Meeting Details",
-        "href": "https://www.lausd.org/site/Default.aspx?PageID=18628&amp;PageType=17&amp;DomainID=1057&amp;ModuleInstanceID=73805&amp;EventDateID=71879"
-    }]
+    assert parsed_items[0]["links"] == [
+        {
+            "title": "Meeting Details",
+            "href": "https://www.lausd.org/site/Default.aspx?PageID=18628&amp;PageType=17&amp;DomainID=1057&amp;ModuleInstanceID=73805&amp;EventDateID=73502",  # noqa
+        }
+    ]
+    assert parsed_items[1]["links"] == [
+        {
+            "title": "Meeting Details",
+            "href": "https://www.lausd.org/site/Default.aspx?PageID=18628&amp;PageType=17&amp;DomainID=1057&amp;ModuleInstanceID=73805&amp;EventDateID=71879",  # noqa
+        }
+    ]
 
 
 def test_classification():
