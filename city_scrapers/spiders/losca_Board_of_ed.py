@@ -69,18 +69,31 @@ class LoscaBoardOfEdSpider(CityScrapersSpider):
         Get start date from title instead, since it is in the correct time zone.
         """
         raw = item.css("title::text").get()
-        date = " ".join(raw.split()[0:3])
-        return parse(date)
+        match = re.search(r"(\d{1,2}/\d{1,2}/\d{4}\s+\d{1,2}:\d{2}\s+[AP]M)", raw)
+        if match:
+            return parse(match.group(1))
+        else:
+            # Fallback to the original method if regex doesn't match
+            return parse(" ".join(raw.split()[0:3]))
 
     def _parse_end(self, item):
         """
         Parse end datetime as a naive datetime object.
         End time is in title.
         """
-        raw = item.css("title::text").get().split()
-        date = raw[0]
-        time = " ".join(raw[4:6])
-        return parse(f"{date} {time}")
+        raw = item.css("title::text").get()
+        match = re.search(
+            r"\d{1,2}/\d{1,2}/\d{4}\s+\d{1,2}:\d{2}\s+[AP]M\s+-\s+(\d{1,2}:\d{2}\s+[AP]M)",  # noqa
+            raw,
+        )
+        if match:
+            date = raw.split()[0]
+            time = match.group(1)
+            return parse(f"{date} {time}")
+        else:
+            # Fallback to the original method if regex doesn't match
+            raw_split = raw.split()
+            return parse(f"{raw_split[0]} {' '.join(raw_split[4:6])}")
 
     def _parse_links(self, item):
         """
