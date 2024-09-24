@@ -25,7 +25,6 @@ class LoscaBoardOfEdSpider(CityScrapersSpider):
             "address": "333 South Beaudry Avenue, Board Room, Los Angeles, CA 90017",
         }
         for item in response.css("item"):
-            # pdb.set_trace()
             meeting = Meeting(
                 title=self._parse_title(item),
                 description="",
@@ -49,11 +48,19 @@ class LoscaBoardOfEdSpider(CityScrapersSpider):
         Parse meeting title. RSS feed titles always start with timestamp.
         Ex: '9/19/2024 10:00 AM - 1:00 PM Children... Early Education Committee'
         Remove timestamp from string and return title.
+        Use regex and fallback to #split().
         """
         raw = item.css("title::text").get()
-        no_stamp = raw.split()[6:-1]
-        title = " ".join(no_stamp)
-        return title
+        # Match everything after the timestamp pattern
+        match = re.search(
+            r"\d{1,2}/\d{1,2}/\d{4}\s+\d{1,2}:\d{2}\s+[AP]M\s+-\s+\d{1,2}:\d{2}\s+[AP]M\s+(.*)",  # noqa
+            raw,
+        )
+        if match:
+            return match.group(1).strip()
+        else:
+            # If pattern doesn't match, return original without first 6 words
+            return " ".join(raw.split()[6:])
 
     def _parse_start(self, item):
         """
@@ -83,13 +90,13 @@ class LoscaBoardOfEdSpider(CityScrapersSpider):
         response does. This causes item.css('link') to return an empty tag.
         We must parse link another way. Try regex with split as fallback.
         """
-        raw_html = item.get()
-        match = re.search(r"<link>(.*?)<", raw_html, re.DOTALL)
+        raw = item.get()
+        match = re.search(r"<link>(.*?)<", raw, re.DOTALL)
         if match:
             link = match.group(1).strip()
         else:
             # Fallback to double split if regex doesn't match
-            split = raw_html.split("<link>")[1]
+            split = raw.split("<link>")[1]
             link = split.split("<pubdate>")[0].strip()
 
         return [{"title": "Meeting Details", "href": link}]

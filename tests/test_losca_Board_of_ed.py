@@ -27,8 +27,8 @@ def test_count():
 
 
 def test_title():
-    assert parsed_items[0]["title"] == "Greening Schools & Climate Resilience"
-    assert parsed_items[1]["title"] == "Curriculum and Instruction"
+    assert parsed_items[0]["title"] == "Greening Schools & Climate Resilience Committee"
+    assert parsed_items[1]["title"] == "Curriculum and Instruction Committee"
 
 
 def test_description():
@@ -50,7 +50,7 @@ def test_time_notes():
 def test_id():
     assert (
         parsed_items[0]["id"]
-        == "losca_Board_of_ed/202409241300/x/greening_schools_climate_resilience"
+        == "losca_Board_of_ed/202409241300/x/greening_schools_climate_resilience_committee"  # noqa
     )
 
 
