@@ -68,10 +68,7 @@ def test_location():
 
 
 def test_source():
-    assert (
-        parsed_items[0]["source"]
-        == "https://lacity.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1726255032697"  # noqa
-    )
+    assert parsed_items[0]["source"] == "https://clerk.lacity.gov/calendar"
 
 
 def test_links():
@@ -81,7 +78,7 @@ def test_links():
     assert parsed_items[1]["links"] == [
         {"title": "video", "href": "https://youtube.com/watch?v=EX00DchXvkA"}
     ]
-    assert parsed_items[2]["links"] == [{"title": "video", "href": None}]
+    assert parsed_items[2]["links"] == []
 
 
 def test_classification():

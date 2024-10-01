@@ -43,7 +43,7 @@ class LoscaCityCouncilSpider(CityScrapersSpider):
                 time_notes="",
                 location=location,
                 links=self._parse_links(obj),
-                source=self._parse_source(response),
+                source="https://clerk.lacity.gov/calendar",
             )
 
             meeting["status"] = self._get_status(meeting)
@@ -53,8 +53,7 @@ class LoscaCityCouncilSpider(CityScrapersSpider):
 
     def _parse_links(self, obj):
         """Parse links based on given video URL."""
-        return [{"title": "video", "href": obj["videoUrl"]}]
-
-    def _parse_source(self, response):
-        """Parse or generate source."""
-        return response.url
+        links = []
+        if obj.get("videoUrl"):
+            links.append({"title": "video", "href": obj["videoUrl"]})
+        return links
