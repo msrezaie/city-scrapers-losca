@@ -1,56 +1,47 @@
-from city_scrapers_core.constants import NOT_CLASSIFIED
+from city_scrapers_core.constants import CITY_COUNCIL
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from scrapy.http import HtmlResponse
-import pdb
-
+from dateutil.parser import parse
+import json
 
 class LoscaCityCouncilSpider(CityScrapersSpider):
     name = "losca_City_Council"
     agency = "Los Angeles City Council"
-    timezone = "America/Chicago"
-    start_urls = ["https://lacity.primegov.com/public/portal"]
-
-    # use a headless browser to execute javascript and let data load
-    def __init__(self, *args, **kwargs):
-        super(LoscaCityCouncilSpider, self).__init__(*args, **kwargs)
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")  # Run in headless mode
-        self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+    timezone = "America/Los_Angeles"
+    # original URL https://clerk.lacity.gov/calendar
+    # data is shown from an iframe https://lacity.primegov.com/public/portal
+    # iframe loads data from API. "scrape" API instead
+    # upcoming: lacity.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1726255032697
+    # archived: lacity.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2024
+    start_urls = [
+        "https://lacity.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1726255032697"
+    ]
 
     def parse(self, response):
         """
-        `parse` should always `yield` Meeting items.
-
-        Change the `_parse_title`, `_parse_start`, etc methods to fit your scraping
-        needs.
+        Parse API response.
         """
-        self.driver.get(response.url)
-        # Wait for iframe to load, you might need to adjust the wait time or use WebDriverWait
-        self.driver.implicitly_wait(5000)
-        html = self.driver.page_source
-        response = HtmlResponse(url=self.driver.current_url, body=html, encoding='utf-8')
-        rows = response.css("#upcomingMeetingsContent tbody tr")
-        # iframe_response = HtmlResponse(url=self.driver.current_url, body=iframe_source, encoding='utf-8')
-        for row in rows:
-            pdb.set_trace()
-            title = row.css(".meeting-title").text
-            print(f"title: {title}")
+
+        # convert response to json
+        data = json.loads(response.body)
+
+        # hardcode location
+        location = {
+            "name": "Office of the City Clerk",
+            "address": "200 N Spring St, Room 360, Los Angeles, CA 90012",
+        }
+
+        for obj in data:
             meeting = Meeting(
-                title=self._parse_title(row),
-                description=self._parse_description(row),
-                classification=self._parse_classification(row),
-                start=self._parse_start(row),
-                end=self._parse_end(row),
-                all_day=self._parse_all_day(row),
-                time_notes=self._parse_time_notes(row),
-                location=self._parse_location(row),
-                links=self._parse_links(row),
+                title=obj['title'],
+                description="",
+                classification=CITY_COUNCIL,
+                start=parse(obj['dateTime']),
+                end=None,
+                all_day=False,
+                time_notes="",
+                location=location,
+                links=self._parse_links(obj),
                 source=self._parse_source(response),
             )
 
@@ -59,48 +50,9 @@ class LoscaCityCouncilSpider(CityScrapersSpider):
 
             yield meeting
 
-    def closed(self, reason):
-        self.driver.quit()
-
-    def _parse_title(self, row):
-        """Parse or generate meeting title."""
-        title = row.find_element(By.CSS_SELECTOR, ".meeting-title").text
-        return title
-
-    def _parse_description(self, item):
-        """Parse or generate meeting description."""
-        return ""
-
-    def _parse_classification(self, item):
-        """Parse or generate classification from allowed options."""
-        return NOT_CLASSIFIED
-
-    def _parse_start(self, item):
-        """Parse start datetime as a naive datetime object."""
-        return None
-
-    def _parse_end(self, item):
-        """Parse end datetime as a naive datetime object. Added by pipeline if None"""
-        return None
-
-    def _parse_time_notes(self, item):
-        """Parse any additional notes on the timing of the meeting"""
-        return ""
-
-    def _parse_all_day(self, item):
-        """Parse or generate all-day status. Defaults to False."""
-        return False
-
-    def _parse_location(self, item):
-        """Parse or generate location."""
-        return {
-            "address": "",
-            "name": "",
-        }
-
-    def _parse_links(self, item):
+    def _parse_links(self, obj):
         """Parse or generate links."""
-        return [{"href": "", "title": ""}]
+        return [{ "title": "video", "href": obj['videoUrl'] }]
 
     def _parse_source(self, response):
         """Parse or generate source."""
