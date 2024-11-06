@@ -1,5 +1,3 @@
-import json
-
 from city_scrapers_core.constants import CITY_COUNCIL
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
@@ -24,7 +22,7 @@ class LoscaCityCouncilSpider(CityScrapersSpider):
         """
 
         # convert response to json
-        data = json.loads(response.body)
+        data = response.json()
 
         # hardcode location
         location = {
