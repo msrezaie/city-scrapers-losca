@@ -124,7 +124,7 @@ def test_links():
             "href": "https://assets-us-01.kc-usercontent.com/0234f496-d2b7-00b6-17a4-b43e949b70a2/522b6a97-181f-4a4d-a472-798ee3c7fc75/091724%20Agenda.htm",  # noqa
         },
         {
-            "title": "PDF",
+            "title": "Agenda PDF",
             "href": "https://assets-us-01.kc-usercontent.com:443/0234f496-d2b7-00b6-17a4-b43e949b70a2/d2b9d6cf-737c-4128-a54f-f1384fb4992e/Agenda_091724_links.pdf",  # noqa
         },
     ]
@@ -134,7 +134,7 @@ def test_links():
             "href": "https://assets-us-01.kc-usercontent.com/0234f496-d2b7-00b6-17a4-b43e949b70a2/2493f102-41f1-4483-9b65-39329b13e7a8/091024%20Agenda.htm",  # noqa
         },
         {
-            "title": "PDF",
+            "title": "Agenda PDF",
             "href": "https://assets-us-01.kc-usercontent.com:443/0234f496-d2b7-00b6-17a4-b43e949b70a2/d2af8220-c0e3-4d89-8370-c376023e1caf/Agenda_091024_links.pdf",  # noqa
         },
         {
@@ -142,7 +142,7 @@ def test_links():
             "href": "https://assets-us-01.kc-usercontent.com/0234f496-d2b7-00b6-17a4-b43e949b70a2/d1f3938c-28ca-462b-a688-c5f35b74a5bb/091024%20Supplemental%20Agenda.htm",  # noqa
         },
         {
-            "title": "PDF",
+            "title": "Supplemental PDF",
             "href": "https://assets-us-01.kc-usercontent.com:443/0234f496-d2b7-00b6-17a4-b43e949b70a2/d8e39c4e-4f9d-4582-b357-572366d4619b/091024.pdf",  # noqa
         },
     ]

@@ -64,8 +64,14 @@ class LoscaBoardOfSupervisorsSpider(CityScrapersSpider):
         """
         out = []
         links = item.css("a")
+        previous_title = None
         for link in links:
             title = link.css("span::text").get()
+            # if the title is just PDF, use previous title and add PDF to it
+            # becomes useful when there are multiple "PDF" links
+            if title == "PDF":
+                title = f"{previous_title} PDF"
+            previous_title = title
             href = link.css("::attr(href)").get()
             out.append({"title": title, "href": href})
         return out
