@@ -59,7 +59,7 @@ def test_status():
 def test_location():
     assert parsed_items[0]["location"] == {
         "name": "",
-        "address": "1101 West Ventura Boulevard, 1515 South Veteran Avenue, 1523 South Veteran Avenue, 1666 North Vermont Avenue, 1642 – 1666 North Vermont Avenue, 4646 – 4650 West Prospect Avenue, 4685 – 4697 West Hollywood Boulevard",
+        "address": "1101 West Ventura Boulevard, 1515 South Veteran Avenue, 1523 South Veteran Avenue, 1666 North Vermont Avenue, 1642 – 1666 North Vermont Avenue, 4646 – 4650 West Prospect Avenue, 4685 – 4697 West Hollywood Boulevard",  # noqa
     }
 
 

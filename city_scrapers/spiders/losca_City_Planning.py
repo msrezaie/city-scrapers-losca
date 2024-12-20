@@ -58,7 +58,7 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
 
     def _parse_location(self, item):
         """Parse or generate location."""
-        pattern = r"(\d{3,4}(?:\s?–\s?\d{3,4})?(?:\s?and\s?\d{3,4})?(?:\s?,?\s?\d{3,4})?\s[\w\s]+\b(?:Road|Drive|Boulevard|Avenue))"
+        pattern = r"(\d{3,4}(?:\s?–\s?\d{3,4})?(?:\s?and\s?\d{3,4})?(?:\s?,?\s?\d{3,4})?\s[\w\s]+\b(?:Road|Drive|Boulevard|Avenue))"  # noqa
         addresses = re.findall(pattern, item["Address"])
         address = ", ".join(addresses) if addresses else item.get("Address", "")
         return {
