@@ -34,7 +34,9 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
 
         for item in items:
             if not all(key in item for key in ["Type", "Date", "Address"]):
-                self.logger.warning(f"Skipping item due to missing required fields: {item}")
+                self.logger.warning(
+                    f"Skipping item due to missing required fields: {item}"
+                )
                 continue
             meeting = Meeting(
                 title=item.get("Type", ""),
@@ -58,7 +60,7 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
         """Parse or generate location."""
         pattern = r"(\d{3,4}(?:\s?–\s?\d{3,4})?(?:\s?and\s?\d{3,4})?(?:\s?,?\s?\d{3,4})?\s[\w\s]+\b(?:Road|Drive|Boulevard|Avenue))"
         addresses = re.findall(pattern, item["Address"])
-        address = ', '.join(addresses) if addresses else item.get("Address", "")
+        address = ", ".join(addresses) if addresses else item.get("Address", "")
         return {
             "address": address,
             "name": item.get("BoardName", ""),
@@ -68,7 +70,7 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
         """Validate URL format and security."""
         if not url:
             return False
-        if not url.startswith('https://'):
+        if not url.startswith("https://"):
             self.logger.warning(f"Non-HTTPS URL found: {url}")
             return False
         return True
