@@ -48,7 +48,7 @@ def test_time_notes():
 def test_id():
     assert (
         parsed_items[0]["id"]
-        == "losca_city_planning/202410240000/x/city_planning_commission"
+        == "losca_City_Planning/202410240000/x/city_planning_commission"
     )
 
 
