@@ -9,7 +9,7 @@ from freezegun import freeze_time
 from city_scrapers.spiders.losca_Health_Commission import LoscaHealthCommissionSpider
 
 test_response = file_response(
-    join(dirname(__file__), "files", "losca_health_commission.json"),
+    join(dirname(__file__), "files", "losca_Health_Commission.json"),
     url="https://clerk.lacity.gov/clerk-services/council-and-public-services/city-health-commission/commission-meetings",  # noqa
 )
 spider = LoscaHealthCommissionSpider()
