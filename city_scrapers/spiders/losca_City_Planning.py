@@ -7,7 +7,7 @@ from dateutil.parser import parse
 
 
 class LoscaCityPlanningSpider(CityScrapersSpider):
-    name = "losca_city_planning"
+    name = "losca_City_Planning"
     agency = "Los Angeles City Planning"
     timezone = "America/Los_Angeles"
     start_year = 2024
