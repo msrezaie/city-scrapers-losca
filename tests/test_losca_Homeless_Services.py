@@ -7,7 +7,6 @@ from city_scrapers_core.constants import (
     CITY_COUNCIL,
     COMMISSION,
     COMMITTEE,
-    NOT_CLASSIFIED,
 )
 from city_scrapers_core.utils import file_response
 from freezegun import freeze_time
@@ -27,8 +26,10 @@ parsed_items = [item for item in spider.parse(test_response)]
 
 freezer.stop()
 
+
 def test_count():
     assert len(parsed_items) == 15
+
 
 def test_title():
     assert parsed_items[0]["title"] == "CES Policy Council Meeting - Canceled"
@@ -45,7 +46,7 @@ def test_start():
 
 
 def test_end():
-    assert parsed_items[0]["end"] == None
+    assert parsed_items[0]["end"] is None
 
 
 def test_time_notes():
@@ -53,7 +54,7 @@ def test_time_notes():
 
 
 def test_id():
-    assert parsed_items[0]["id"] == "losca_Homeless_Services/202412250000/x/ces_policy_council_meeting"
+    assert parsed_items[0]["id"] == "losca_Homeless_Services/202412250000/x/ces_policy_council_meeting"  # noqa
 
 
 def test_status():
@@ -63,9 +64,9 @@ def test_status():
 
 def test_location():
     # if committee or commission or board
-        # LAHSA, 707 Wilshire Blvd, 10th Floor, Los Angeles, CA 90017
+    #   LAHSA, 707 Wilshire Blvd, 10th Floor, Los Angeles, CA 90017
     # if council
-        # 637 Wilshire Blvd, 1st Floor Commission Room, Los Angeles, CA 90017
+    #   637 Wilshire Blvd, 1st Floor Commission Room, Los Angeles, CA 90017
     # city council is the only agency that doesn't meet at usual LAHSA location
     assert parsed_items[0]["classification"] == CITY_COUNCIL
     assert parsed_items[0]["location"] == {
@@ -99,7 +100,7 @@ def test_source():
 def test_links():
     assert parsed_items[0]["links"] == [{
         "title": "Event Link",
-        "href": "https://www.lahsa.org/events?e=1412-ces-policy-council-meeting-canceled"
+        "href": "https://www.lahsa.org/events?e=1412-ces-policy-council-meeting-canceled"  # noqa
     }]
 
 

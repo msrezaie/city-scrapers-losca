@@ -60,9 +60,8 @@ class LoscaHomelessServicesSpider(CityScrapersSpider):
             return COMMISSION
         elif "committee" in title:
             return COMMITTEE
-        else: return NOT_CLASSIFIED
-
-        return NOT_CLASSIFIED
+        else:
+            return NOT_CLASSIFIED
 
     def _parse_start(self, item):
         """Parse start datetime as a naive datetime object."""
@@ -97,7 +96,7 @@ class LoscaHomelessServicesSpider(CityScrapersSpider):
         # override if classification is city council
         if classification == CITY_COUNCIL:
             location["name"] = "City Council (check Event Link)"
-            location["address"] = "637 Wilshire Blvd, 1st Floor Commission Room, Los Angeles, CA 90017"
+            location["address"] = "637 Wilshire Blvd, 1st Floor Commission Room, Los Angeles, CA 90017"  # noqa
 
         return location
 
