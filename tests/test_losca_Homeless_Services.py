@@ -2,7 +2,13 @@ from datetime import datetime
 from os.path import dirname, join
 
 import pytest
-from city_scrapers_core.constants import BOARD, CITY_COUNCIL, COMMISSION, COMMITTEE, NOT_CLASSIFIED
+from city_scrapers_core.constants import (
+    BOARD,
+    CITY_COUNCIL,
+    COMMISSION,
+    COMMITTEE,
+    NOT_CLASSIFIED,
+)
 from city_scrapers_core.utils import file_response
 from freezegun import freeze_time
 

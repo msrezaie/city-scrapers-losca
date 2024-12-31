@@ -1,9 +1,16 @@
-from city_scrapers_core.constants import BOARD, CITY_COUNCIL, COMMISSION, COMMITTEE, NOT_CLASSIFIED
+from datetime import datetime
+from urllib.parse import urljoin
+
+from city_scrapers_core.constants import (
+    BOARD,
+    CITY_COUNCIL,
+    COMMISSION,
+    COMMITTEE,
+    NOT_CLASSIFIED,
+)
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
 from dateutil.parser import parse
-from datetime import datetime
-from urllib.parse import urljoin
 
 
 class LoscaHomelessServicesSpider(CityScrapersSpider):
