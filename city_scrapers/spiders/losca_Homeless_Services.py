@@ -47,11 +47,11 @@ class LoscaHomelessServicesSpider(CityScrapersSpider):
 
     def _parse_title(self, item):
         """Parse meeting title."""
-        return item.css('.h6::text').get()
+        return item.css(".h6::text").get()
 
     def _parse_classification(self, item):
         """Parse classification from allowed options."""
-        title = item.css('.h6::text').get().lower()
+        title = item.css(".h6::text").get().lower()
         if "board" in title:
             return BOARD
         elif "council" in title:
@@ -66,7 +66,7 @@ class LoscaHomelessServicesSpider(CityScrapersSpider):
     def _parse_start(self, item):
         """Parse start datetime as a naive datetime object."""
         # import pdb; pdb.set_trace()
-        datestring = item.css('.text-secondary::text').get()
+        datestring = item.css(".text-secondary::text").get()
         # sometimes datestring is "NEXT WEDNESDAY"
         # use fuzzy parser to handle this kind of input
         # example: if today is 12/20/2024, "NEXT WEDNESDAY" returns "12/25/2024"
@@ -90,20 +90,22 @@ class LoscaHomelessServicesSpider(CityScrapersSpider):
         # default location
         location = {
             "name": "LAHSA (check Event Link)",
-            "address": "707 Wilshire Blvd, 10th Floor, Los Angeles, CA 90017"
+            "address": "707 Wilshire Blvd, 10th Floor, Los Angeles, CA 90017",
         }
 
         # override if classification is city council
         if classification == CITY_COUNCIL:
             location["name"] = "City Council (check Event Link)"
-            location["address"] = "637 Wilshire Blvd, 1st Floor Commission Room, Los Angeles, CA 90017"  # noqa
+            location["address"] = (
+                "637 Wilshire Blvd, 1st Floor Commission Room, Los Angeles, CA 90017"  # noqa
+            )
 
         return location
 
     def _parse_links(self, item):
         """Parse links."""
         base_url = "https://www.lahsa.org/"
-        href = item.css('::attr(href)').get()
+        href = item.css("::attr(href)").get()
         url = urljoin(base_url, href)
         return [{"title": "Event Link", "href": url}]
 

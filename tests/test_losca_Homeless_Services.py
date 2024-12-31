@@ -54,7 +54,10 @@ def test_time_notes():
 
 
 def test_id():
-    assert parsed_items[0]["id"] == "losca_Homeless_Services/202412250000/x/ces_policy_council_meeting"  # noqa
+    assert (
+        parsed_items[0]["id"]
+        == "losca_Homeless_Services/202412250000/x/ces_policy_council_meeting"
+    )  # noqa
 
 
 def test_status():
@@ -71,25 +74,25 @@ def test_location():
     assert parsed_items[0]["classification"] == CITY_COUNCIL
     assert parsed_items[0]["location"] == {
         "name": "City Council (check Event Link)",
-        "address": "637 Wilshire Blvd, 1st Floor Commission Room, Los Angeles, CA 90017"
+        "address": "637 Wilshire Blvd, 1st Floor Commission Room, Los Angeles, CA 90017",  # noqa
     }
     # board uses default location
     assert parsed_items[1]["classification"] == BOARD
     assert parsed_items[1]["location"] == {
         "name": "LAHSA (check Event Link)",
-        "address": "707 Wilshire Blvd, 10th Floor, Los Angeles, CA 90017"
+        "address": "707 Wilshire Blvd, 10th Floor, Los Angeles, CA 90017",
     }
     # committee uses default location
     assert parsed_items[3]["classification"] == COMMITTEE
     assert parsed_items[3]["location"] == {
         "name": "LAHSA (check Event Link)",
-        "address": "707 Wilshire Blvd, 10th Floor, Los Angeles, CA 90017"
+        "address": "707 Wilshire Blvd, 10th Floor, Los Angeles, CA 90017",
     }
     # commission uses default location
     assert parsed_items[5]["classification"] == COMMISSION
     assert parsed_items[5]["location"] == {
         "name": "LAHSA (check Event Link)",
-        "address": "707 Wilshire Blvd, 10th Floor, Los Angeles, CA 90017"
+        "address": "707 Wilshire Blvd, 10th Floor, Los Angeles, CA 90017",
     }
 
 
@@ -98,10 +101,12 @@ def test_source():
 
 
 def test_links():
-    assert parsed_items[0]["links"] == [{
-        "title": "Event Link",
-        "href": "https://www.lahsa.org/events?e=1412-ces-policy-council-meeting-canceled"  # noqa
-    }]
+    assert parsed_items[0]["links"] == [
+        {
+            "title": "Event Link",
+            "href": "https://www.lahsa.org/events?e=1412-ces-policy-council-meeting-canceled",  # noqa
+        }
+    ]
 
 
 def test_classification():
