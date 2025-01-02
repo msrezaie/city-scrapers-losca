@@ -20,6 +20,12 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
 
     meetings_url = "https://planning.lacity.gov/about/commissions-boards-hearings"
 
+    custom_settings = {
+        'RETRY_TIMES': 5,
+        'RETRY_HTTP_CODES': [429, 500, 502, 503, 504],
+        'DOWNLOAD_DELAY': 2,
+    }
+
     def start_requests(self):
         """
         This spider retrieves meetings for the specified
@@ -73,7 +79,7 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
     def _parse_location(self, item):
         address = item.get("Address", "")
         address = address.replace("\n", "").replace("\r", "").strip()
-        if address or "cancel" not in address.lower():
+        if address and "cancel" not in address.lower():
             return {
                 "name": item.get("BoardName", ""),
                 "address": address,
