@@ -1,5 +1,6 @@
-import re
+from datetime import datetime
 
+import scrapy
 from city_scrapers_core.constants import BOARD, COMMISSION, NOT_CLASSIFIED
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
@@ -10,18 +11,31 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
     name = "losca_City_Planning"
     agency = "Los Angeles City Planning"
     timezone = "America/Los_Angeles"
-    start_year = 2024
+
     start_urls = [
-        f"https://planning.lacity.gov/dcpapi/meetings/api/all/commissions/{start_year}",
-        f"https://planning.lacity.gov/dcpapi/meetings/api/all/boards/{start_year}",
-        f"https://planning.lacity.gov/dcpapi/meetings/api/all/hearings/{start_year}",
+        "https://planning.lacity.gov/dcpapi2/meetings/api/all/commissions/{start_year}",
+        "https://planning.lacity.gov/dcpapi2/meetings/api/all/boards/{start_year}",
+        "https://planning.lacity.gov/dcpapi2/meetings/api/all/hearings/{start_year}",
     ]
 
+    meetings_url = "https://planning.lacity.gov/about/commissions-boards-hearings"
+
+    def start_requests(self):
+        """
+        This spider retrieves meetings for the specified
+        `start_year`, which is dynamically set to the
+        current year.
+        """
+        current_year = datetime.now().year
+        for url in self.start_urls:
+            url = url.format(start_year=current_year)
+            yield scrapy.Request(
+                url=url,
+                headers={"Accept": "application/json"},
+                callback=self.parse,
+            )
+
     def parse(self, response):
-        """
-        This spider retrieves meetings for the specified `start_year`.
-        Update `start_year` to change the target year.
-        """
         try:
             data = response.json()
             if "Entries" not in data:
@@ -40,7 +54,7 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
                 continue
             meeting = Meeting(
                 title=item.get("Type", ""),
-                description=item.get("Note", ""),
+                description=item.get("Note", "").strip(),
                 classification=self._parse_classification(item),
                 start=parse(item.get("Date")),
                 end=None,
@@ -48,7 +62,7 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
                 time_notes="",
                 location=self._parse_location(item),
                 links=self._parse_links(item),
-                source=self._parse_source(response),
+                source=self.meetings_url,
             )
 
             meeting["status"] = self._get_status(meeting)
@@ -57,34 +71,23 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
             yield meeting
 
     def _parse_location(self, item):
-        """Parse or generate location."""
-        pattern = r"(\d{3,4}(?:\s?–\s?\d{3,4})?(?:\s?and\s?\d{3,4})?(?:\s?,?\s?\d{3,4})?\s[\w\s]+\b(?:Road|Drive|Boulevard|Avenue))"  # noqa
-        addresses = re.findall(pattern, item["Address"])
-        address = ", ".join(addresses) if addresses else item.get("Address", "")
-        return {
-            "address": address,
-            "name": item.get("BoardName", ""),
-        }
-
-    def _validate_url(self, url):
-        """Validate URL format and security."""
-        if not url:
-            return False
-        if not url.startswith("https://"):
-            self.logger.warning(f"Non-HTTPS URL found: {url}")
-            return False
-        return True
+        address = item.get("Address", "")
+        address = address.replace("\n", "").replace("\r", "").strip()
+        if address or "cancel" not in address.lower():
+            return {
+                "name": item.get("BoardName", ""),
+                "address": address,
+            }
+        return {"name": "", "address": ""}
 
     def _parse_links(self, item):
-        """Parse or generate links."""
         links = []
 
-        agenda_link = item.get("AgendaLink")
-        if agenda_link and self._validate_url(agenda_link):
-            links.append({"href": item["AgendaLink"], "title": "Agenda"})
-        docs_link = item.get("AddDocsLink")
-        if docs_link and self._validate_url(docs_link):
-            links.append({"href": item["AddDocsLink"], "title": "Additional Documents"})
+        for key in item.keys():
+            if "Link" in key:
+                href = item.get(key)
+                if href:
+                    links.append({"href": href, "title": key.replace("Link", "")})
 
         return links
 
@@ -95,7 +98,3 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
         elif "commission" in lower_text:
             return COMMISSION
         return NOT_CLASSIFIED
-
-    def _parse_source(self, response):
-        """Parse or generate source."""
-        return response.url
