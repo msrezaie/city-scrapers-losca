@@ -85,7 +85,6 @@ class LoscaMetroTransitSpider(LegistarSpider):
         """
         location = {"name": "", "address": ""}
         description = ""
-        print(f"ITEM: {item}")
         if isinstance(item["Meeting Location"], dict):
             location["name"] = item["Name"]["label"]
             location["address"] = item["Meeting Location"]["label"]
