@@ -22,8 +22,8 @@ parsed_items = [item for item in spider.parse(test_response)]
 freezer.stop()
 
 
-def test_parsed_items_count():
-    assert len(parsed_items) == 10  # Adjust the expected count based on your test data
+def test_count():
+    assert len(parsed_items) == 10
 
 
 def test_title():
@@ -60,7 +60,7 @@ def test_status():
 def test_location():
     assert parsed_items[0]["location"] == {
         "name": "Los Angeles City Health Commission",
-        "address": "200 N Spring St, Room 340 (CITY HALL) Los Angeles, CA 90012",
+        "address": "Room 340 (CITY HALL), 200 N Spring St, Los Angeles, CA 90012",
     }
 
 

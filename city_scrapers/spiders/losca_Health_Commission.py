@@ -1,4 +1,7 @@
-from city_scrapers_core.constants import COMMISSION
+from datetime import datetime
+
+import scrapy
+from city_scrapers_core.constants import CANCELLED, COMMISSION
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
 from dateutil.parser import parse
@@ -9,20 +12,37 @@ class LoscaHealthCommissionSpider(CityScrapersSpider):
     agency = "Los Angeles Health Commission"
     timezone = "America/Los_Angeles"
     committee_id: int = 6
-    start_year: int = 2024
+
     default_location = {
-        "address": "200 N Spring St, Room 340 (CITY HALL) Los Angeles, CA 90012",
+        "address": "Room 340 (CITY HALL), 200 N Spring St, Los Angeles, CA 90012",
         "name": "Los Angeles City Health Commission",
     }
-    start_urls = [
-        f"https://lacity.primegov.com/api/v2/PublicPortal/ListArchivedMeetingsByCommitteeId?year={start_year}&committeeId={committee_id}"  # noqa
-    ]
 
-    def parse(self, response):
+    website_url = "https://clerk.lacity.gov/clerk-services/council-and-public-services/city-health-commission/commission-meetings"  # noqa
+
+    start_url = "https://lacity.primegov.com/api/v2/PublicPortal/ListArchivedMeetingsByCommitteeId?year={start_year}&committeeId={committee_id}"  # noqa
+
+    def start_requests(self):
         """
         This spider retrieves meetings for the specified `start_year`.
-        Update `start_year` to change the target year.
+        Since there are no upcoming meetings for the year 2025 (as of the
+        time of making this spider), the spider retrieves meetings for the
+        past year as well.
         """
+        current_date = datetime.now().year
+        urls = [
+            self.start_url.format(
+                start_year=current_date - 1, committee_id=self.committee_id
+            ),
+            self.start_url.format(
+                start_year=current_date, committee_id=self.committee_id
+            ),
+        ]
+
+        for url in urls:
+            yield scrapy.Request(url, callback=self.parse)
+
+    def parse(self, response):
         try:
             items = response.json()
             if not isinstance(items, list):
@@ -50,15 +70,24 @@ class LoscaHealthCommissionSpider(CityScrapersSpider):
                     time_notes="",
                     location=self.default_location,
                     links=self._parse_links(item),
-                    source=response.url,
+                    source=self.website_url,
                 )
 
-                meeting["status"] = self._get_status(meeting)
+                meeting["status"] = self._parse_status(meeting, item)
                 meeting["id"] = self._get_id(meeting)
 
                 yield meeting
         except ValueError as e:
             self.logger.error(f"Failed to parse JSON response: {e}")
+
+    def _parse_status(self, meeting, item):
+        for document in item.get("documentList", []):
+            if not document:
+                continue
+            if "cancel" in document.get("templateName").lower():
+                return CANCELLED
+
+        return self._get_status(meeting)
 
     def _parse_title(self, item):
         """Parse or generate meeting title."""
