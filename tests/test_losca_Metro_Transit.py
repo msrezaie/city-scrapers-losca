@@ -80,10 +80,6 @@ def test_source():
 def test_links():
     assert parsed_items[0]["links"] == [
         {
-            "href": "https://metro.legistar.com/DepartmentDetail.aspx?ID=28529&GUID=44319A1A-B2B7-48CC-B857-ADCE9064573B",  # noqa
-            "title": "Board of Directors - Regular Board Meeting",
-        },
-        {
             "href": "https://metro.legistar.com/View.ashx?M=A&ID=1196314&GUID=2D75E646-096C-4C3A-A6B9-4A938061D9A9",  # noqa
             "title": "Agenda",
         },

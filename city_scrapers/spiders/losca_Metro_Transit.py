@@ -1,3 +1,5 @@
+import re
+
 from city_scrapers_core.constants import BOARD, CITY_COUNCIL, COMMITTEE, NOT_CLASSIFIED
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import LegistarSpider
@@ -17,15 +19,16 @@ class LoscaMetroTransitSpider(LegistarSpider):
         for event in events:
             start = self.legistar_start(event)
             if start:
+                meeting_location, description = self._parse_location(event)
                 meeting = Meeting(
                     title=event.get("Name", {}).get("label", "No Title"),
-                    description="",
+                    description=description,
                     classification=self._parse_classification(event),
                     start=start,
                     end=None,
                     all_day=False,
                     time_notes="",
-                    location=self._parse_location(event),
+                    location=meeting_location,
                     links=self._parse_links(event),
                     source=self.legistar_source(event),
                 )
@@ -50,14 +53,6 @@ class LoscaMetroTransitSpider(LegistarSpider):
         """Parse or generate links to additional information."""
         links = []
 
-        if isinstance(item.get("Name"), dict) and item["Name"].get("url"):
-            links.append(
-                {
-                    "href": item["Name"]["url"],
-                    "title": item["Name"].get("label", "Meeting Details"),
-                }
-            )
-
         if isinstance(item.get("Agenda"), dict) and item["Agenda"].get("url"):
             links.append(
                 {
@@ -81,11 +76,36 @@ class LoscaMetroTransitSpider(LegistarSpider):
         return links
 
     def _parse_location(self, item):
-        """Parse or generate location."""
+        """
+        The location format of the meetings is not consistent.
+        It is returned as a string or a dictionary. The string
+        format at times contains the location/type of the held
+        meeting. This function parses that and returns it as the
+        meeting description.
+        """
+        location = {"name": "", "address": ""}
+        description = ""
+        print(f"ITEM: {item}")
         if isinstance(item["Meeting Location"], dict):
-            return {
-                "address": item["Meeting Location"]["label"],
-                "name": item["Name"]["label"],
-            }
+            location["name"] = item["Name"]["label"]
+            location["address"] = item["Meeting Location"]["label"]
         else:
-            return item["Meeting Location"]
+            meeting_location = item["Meeting Location"]
+            meeting_location = (
+                meeting_location.replace("(", "").replace(")", "").strip()
+            )
+
+            splits = re.split(r"(\b\d{5}\b)", meeting_location)
+            if len(splits) > 2:
+                if "floor" in splits[2].lower() or "room" in splits[2].lower():
+                    room = splits[2].replace("\r\n", "").lstrip(", ").strip()
+                    address = f"{room}, {splits[0].strip()} {splits[1].strip()}"
+                    location["name"] = item["Name"]["label"]
+                    location["address"] = address
+                else:
+                    address = f"{splits[0].strip()} {splits[1].strip()}"
+                    description = splits[2].strip()
+                    location["name"] = item["Name"]["label"]
+                    location["address"] = address
+
+        return location, description
