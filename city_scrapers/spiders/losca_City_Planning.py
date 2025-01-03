@@ -21,9 +21,9 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
     meetings_url = "https://planning.lacity.gov/about/commissions-boards-hearings"
 
     custom_settings = {
-        'RETRY_TIMES': 5,
-        'RETRY_HTTP_CODES': [429, 500, 502, 503, 504],
-        'DOWNLOAD_DELAY': 2,
+        "RETRY_TIMES": 5,
+        "RETRY_HTTP_CODES": [429, 500, 502, 503, 504],
+        "DOWNLOAD_DELAY": 2,
     }
 
     def start_requests(self):
