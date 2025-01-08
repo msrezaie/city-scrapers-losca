@@ -25,6 +25,7 @@ freezer.stop()
 def test_count():
     assert len(parsed_items) == 22
 
+
 def test_title():
     assert parsed_items[0]["title"] == "BOC Regular Meeting"
     assert parsed_items[1]["title"] == "Board of Directors Special Meeting"
@@ -50,7 +51,9 @@ def test_time_notes():
 
 
 def test_id():
-    assert parsed_items[0]["id"] == "losca_Housing_Authority/202501090900/x/boc_regular_meeting"
+    assert parsed_items[0]["id"] == (
+        "losca_Housing_Authority/202501090900/x/boc_regular_meeting"
+    )
 
 
 def test_status():
@@ -72,17 +75,20 @@ def test_source():
 def test_links():
     assert parsed_items[0]["links"] == []
     assert parsed_items[3]["links"] == [{
-        'title': 'Audio',
-        'href': 'https://hacla.org/sites/default/files/2024-12/Audio- 12.12.24 BOC Regular Meeting.mp4',
+        "title": "Audio",
+        "href": "https://hacla.org/sites/default/files/2024-12/Audio- 12.12.24 BOC "
+        "Regular Meeting.mp4",
     }]
     assert parsed_items[9]["links"] == [
         {
-            'title': 'Minutes',
-            'href': 'https://hacla.org/sites/default/files/2024-11/2024.11.14 Action Minutes--BOC Regular Meeting.pdf',
+            "title": "Minutes",
+            "href": "https://hacla.org/sites/default/files/2024-11/2024.11.14 Action "
+            "Minutes--BOC Regular Meeting.pdf",
         },
         {
-            'title': 'Audio',
-            'href': 'https://hacla.org/sites/default/files/2024-11/Audio- 11.14.2024 BOC, BHI Regular Meeting.mp4',
+            "title": "Audio",
+            "href": "https://hacla.org/sites/default/files/2024-11/Audio- 11.14.2024 "
+            "BOC, BHI Regular Meeting.mp4",
         }
     ]
 
