@@ -32,12 +32,12 @@ class LoscaHomelessServicesSpider(CityScrapersSpider):
                 description="",
                 classification=classification,
                 start=self._parse_start(item),
-                end=self._parse_end(item),
+                end=None,
                 all_day=False,
                 time_notes="Start time in Event Link",
                 location=self._parse_location(classification),
                 links=self._parse_links(item),
-                source=self._parse_source(response),
+                source=response.url,
             )
 
             meeting["status"] = self._get_status(meeting)
@@ -77,10 +77,6 @@ class LoscaHomelessServicesSpider(CityScrapersSpider):
             date = date.replace(year=date.year + 1)
         return date
 
-    def _parse_end(self, item):
-        """Parse end datetime as a naive datetime object. Added by pipeline if None"""
-        return None
-
     def _parse_location(self, classification):
         """
         Generate location from classification.
@@ -108,7 +104,3 @@ class LoscaHomelessServicesSpider(CityScrapersSpider):
         href = item.css("::attr(href)").get()
         url = urljoin(base_url, href)
         return [{"title": "Event Link", "href": url}]
-
-    def _parse_source(self, response):
-        """Parse or generate source."""
-        return response.url
