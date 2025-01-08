@@ -12,7 +12,7 @@ from dateutil.relativedelta import relativedelta
 class LoscaPublicWorksSpider(CityScrapersSpider):
     name = "losca_Public_Works"
     agency = "Los Angeles Board of Public Works"
-    timezone = "America/Chicago"
+    timezone = "America/Los_Angeles"
 
     custom_settings = {
         "ROBOTSTXT_OBEY": False,
