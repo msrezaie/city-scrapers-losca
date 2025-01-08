@@ -1,9 +1,10 @@
+from datetime import datetime
+
 from city_scrapers_core.constants import BOARD
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
 from dateutil.parser import parse
 from dateutil.relativedelta import relativedelta
-from datetime import datetime
 
 
 class LoscaHousingAuthoritySpider(CityScrapersSpider):
