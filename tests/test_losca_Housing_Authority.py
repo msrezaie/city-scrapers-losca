@@ -64,7 +64,7 @@ def test_status():
 def test_location():
     assert parsed_items[0]["location"] == {
         "name": "HACLA",
-        "address": "2600 Wilshire Blvd. Los Angeles, CA 90057"
+        "address": "2600 Wilshire Blvd. Los Angeles, CA 90057",
     }
 
 
@@ -74,11 +74,13 @@ def test_source():
 
 def test_links():
     assert parsed_items[0]["links"] == []
-    assert parsed_items[3]["links"] == [{
-        "title": "Audio",
-        "href": "https://hacla.org/sites/default/files/2024-12/Audio- 12.12.24 BOC "
-        "Regular Meeting.mp4",
-    }]
+    assert parsed_items[3]["links"] == [
+        {
+            "title": "Audio",
+            "href": "https://hacla.org/sites/default/files/2024-12/Audio- 12.12.24 BOC "
+            "Regular Meeting.mp4",
+        }
+    ]
     assert parsed_items[9]["links"] == [
         {
             "title": "Minutes",
@@ -89,7 +91,7 @@ def test_links():
             "title": "Audio",
             "href": "https://hacla.org/sites/default/files/2024-11/Audio- 11.14.2024 "
             "BOC, BHI Regular Meeting.mp4",
-        }
+        },
     ]
 
 

@@ -20,9 +20,9 @@ class LoscaHousingAuthoritySpider(CityScrapersSpider):
         # location from https://www.hacla.org/en/about-us/contact-us
         location = {
             "name": "HACLA",
-            "address": "2600 Wilshire Blvd. Los Angeles, CA 90057"
+            "address": "2600 Wilshire Blvd. Los Angeles, CA 90057",
         }
-        for item in response.css('.views-element-container .views-row'):
+        for item in response.css(".views-element-container .views-row"):
             start_date = self._parse_start(item)
             cutoff = datetime.now() - relativedelta(months=6)
             if start_date and start_date > cutoff:
@@ -46,7 +46,7 @@ class LoscaHousingAuthoritySpider(CityScrapersSpider):
 
     def _parse_title(self, item):
         """Parse or generate meeting title."""
-        text = item.css('.views-field-title .field-content::text').get()
+        text = item.css(".views-field-title .field-content::text").get()
         title = " ".join(text.split()[1:])
         return title
 
@@ -55,7 +55,7 @@ class LoscaHousingAuthoritySpider(CityScrapersSpider):
         Parse start datetime as a naive datetime object.
         Website says "meetings indicated herein begin at 9:00 a.m"
         """
-        text = item.css('.views-field-title .field-content::text').get()
+        text = item.css(".views-field-title .field-content::text").get()
         date = text.split()[0]
         return parse(f"{date} 9am")
 
