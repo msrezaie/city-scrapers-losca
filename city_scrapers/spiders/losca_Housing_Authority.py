@@ -67,12 +67,14 @@ class LoscaHousingAuthoritySpider(CityScrapersSpider):
         links = []
         # add minutes links if any
         for link in item.css(".views-field-field-action-minutes a"):
+            title = link.css("::text").get()
             href = link.css("::attr(href)").get()
-            links.append({"title": "Minutes", "href": href})
+            links.append({"title": title, "href": href})
         # add audio links if any
         for link in item.css(".views-field-field-audio a"):
+            title = link.css("::text").get()
             href = link.css("::attr(href)").get()
-            links.append({"title": "Audio", "href": href})
+            links.append({"title": title, "href": href})
 
         return links
 

@@ -76,19 +76,19 @@ def test_links():
     assert parsed_items[0]["links"] == []
     assert parsed_items[3]["links"] == [
         {
-            "title": "Audio",
+            "title": "Audio- 12.12.24 BOC Regular Meeting.mp4",
             "href": "https://hacla.org/sites/default/files/2024-12/Audio- 12.12.24 BOC "
             "Regular Meeting.mp4",
         }
     ]
     assert parsed_items[9]["links"] == [
         {
-            "title": "Minutes",
+            "title": "2024.11.14 Action Minutes--BOC Regular Meeting.pdf",
             "href": "https://hacla.org/sites/default/files/2024-11/2024.11.14 Action "
             "Minutes--BOC Regular Meeting.pdf",
         },
         {
-            "title": "Audio",
+            "title": "Audio- 11.14.2024 BOC, BHI Regular Meeting.mp4",
             "href": "https://hacla.org/sites/default/files/2024-11/Audio- 11.14.2024 "
             "BOC, BHI Regular Meeting.mp4",
         },
