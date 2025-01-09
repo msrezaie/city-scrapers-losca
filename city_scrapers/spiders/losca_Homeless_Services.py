@@ -73,7 +73,10 @@ class LoscaHomelessServicesSpider(CityScrapersSpider):
         # sometimes datestring is "January 08" which returns "1/8/2024"
         # but we need it to return "1/8/2025"
         date = parse(datestring, fuzzy=True)
-        if date < datetime.today():
+        # datetime.today() returns date and time
+        # zero out the time part of the object to handle edge cases like
+        # a meeting happening that same day
+        if date < datetime.today().replace(hour=0, minute=0, second=0, microsecond=0):
             date = date.replace(year=date.year + 1)
         return date
 
