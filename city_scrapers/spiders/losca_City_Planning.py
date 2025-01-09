@@ -65,7 +65,7 @@ class LoscaCityPlanningSpider(CityScrapersSpider):
                 start=parse(item.get("Date")),
                 end=None,
                 all_day=False,
-                time_notes="",
+                time_notes="Please check the meeting agenda for the scheduled start time",  # noqa
                 location=self._parse_location(item),
                 links=self._parse_links(item),
                 source=self.meetings_url,

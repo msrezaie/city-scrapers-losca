@@ -42,7 +42,9 @@ def test_end():
 
 
 def test_time_notes():
-    assert parsed_items[0]["time_notes"] == ""
+    assert parsed_items[0]["time_notes"] == (
+        "Please check the meeting agenda for the scheduled start time"
+    )
 
 
 def test_id():
@@ -54,6 +56,7 @@ def test_id():
 
 def test_status():
     assert parsed_items[0]["status"] == "tentative"
+    assert parsed_items[34]["status"] == "cancelled"
 
 
 def test_location():
