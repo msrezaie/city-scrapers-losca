@@ -96,7 +96,7 @@ class LoscaPublicWorksSpider(CityScrapersSpider):
         for item in meetings:
             meeting = Meeting(
                 title=self._parse_title(item),
-                description=item["eventtypes"],
+                description=item["description"],
                 classification=BOARD,
                 start=self._parse_start(item),
                 end=None,
