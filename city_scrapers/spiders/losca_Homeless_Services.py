@@ -65,7 +65,6 @@ class LoscaHomelessServicesSpider(CityScrapersSpider):
 
     def _parse_start(self, item):
         """Parse start datetime as a naive datetime object."""
-        # import pdb; pdb.set_trace()
         datestring = item.css(".text-secondary::text").get()
         # sometimes datestring is "NEXT WEDNESDAY"
         # use fuzzy parser to handle this kind of input
