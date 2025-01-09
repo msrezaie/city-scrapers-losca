@@ -56,8 +56,11 @@ class LoscaHousingAuthoritySpider(CityScrapersSpider):
         Website says "meetings indicated herein begin at 9:00 a.m"
         """
         text = item.css(".views-field-title .field-content::text").get()
-        date = text.split()[0]
-        return parse(f"{date} 9am")
+        if text:
+            date = text.split()[0]
+            return parse(f"{date} 9am")
+        else:
+            return None
 
     def _parse_links(self, item):
         """Parse or generate links."""
