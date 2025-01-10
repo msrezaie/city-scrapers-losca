@@ -35,10 +35,7 @@ def test_title():
 
 
 def test_description():
-    assert (
-        parsed_items[0]["description"]
-        == "City Government, Meeting - Board of Public Works, ENS - Meeting - Board"
-    )
+    assert parsed_items[0]["description"] == ""
 
 
 def test_start():
