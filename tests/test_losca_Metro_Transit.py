@@ -31,13 +31,11 @@ def test_title():
 
 
 def test_description():
-    assert (
-        parsed_items[0]["description"] == (
-            "Watch online:  https://boardagendas.metro.net, Listen by phone: "
-            "Dial 202-735-3323 and enter Access Code:5647249# (English) or "
-            "7292892# (Español) To give written or live public comment, please"
-            " see the top of page 4"
-        )
+    assert parsed_items[0]["description"] == (
+        "Watch online:  https://boardagendas.metro.net, Listen by phone: "
+        "Dial 202-735-3323 and enter Access Code:5647249# (English) or "
+        "7292892# (Español) To give written or live public comment, please"
+        " see the top of page 4"
     )
 
 
@@ -68,9 +66,8 @@ def test_location():
     assert parsed_items[0]["location"] == {
         "name": "",
         "address": (
-            "3rd Floor, Metro Board Room ,One Gateway Plaza,"
-            " Los Angeles, CA 90012, "
-        )
+            "3rd Floor, Metro Board Room ,One Gateway Plaza," " Los Angeles, CA 90012, "
+        ),
     }
 
 
