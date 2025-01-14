@@ -31,7 +31,14 @@ def test_title():
 
 
 def test_description():
-    assert parsed_items[0]["description"] == ""
+    assert (
+        parsed_items[0]["description"] == (
+            "Watch online:  https://boardagendas.metro.net, Listen by phone: "
+            "Dial 202-735-3323 and enter Access Code:5647249# (English) or "
+            "7292892# (Español) To give written or live public comment, please"
+            " see the top of page 4"
+        )
+    )
 
 
 def test_start():
@@ -59,14 +66,11 @@ def test_status():
 
 def test_location():
     assert parsed_items[0]["location"] == {
-        "name": "Board of Directors - Regular Board Meeting",
-        "address": "One Gateway Plaza, Los Angeles, CA 90012, \r\n"
-        "3rd Floor, Metro Board Room Watch online:  "
-        "https://boardagendas.metro.net \r\n"
-        "Listen by phone: Dial 202-735-3323 and enter Access Code:\r\n"
-        "5647249# (English) or 7292892# (Español) \r\n"
-        "\r\n"
-        "To give written or live public comment, please see the top of page 4",
+        "name": "",
+        "address": (
+            "3rd Floor, Metro Board Room ,One Gateway Plaza,"
+            " Los Angeles, CA 90012, "
+        )
     }
 
 
