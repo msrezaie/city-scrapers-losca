@@ -39,6 +39,11 @@ jobs:
             pip-${{ matrix.python-version }}-
             pip-
 
+      - name: Clean environment
+        run: |
+          rm -rf .venv/
+          rm -rf ~/.local/share/virtualenvs/*
+          
       - name: Install dependencies
         run: pipenv sync --dev
         env:
