@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" /><meta name="description" /><meta name="author" /><link href="favicon.ico" rel="shortcut icon" type="image/x-icon" /><title>
+	Events at LAHSA
+</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css" integrity="sha256-/oZ7h/Jkj6AfibN/zTWrCoba0L+QhP9Tf/ZSgyZJCnY=" crossorigin="anonymous" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" /><link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" /><link rel="stylesheet" href="css/HelperStyling.css?v=0.0.4" /><link rel="stylesheet" href="css/nofo-styling.css" />
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='/css/lahsa.css?v=20.11.12?v=249.0.2'>
+    <script type="text/javascript" src="ckeditor/ckeditor.js?v=0.0.8"></script>
+    <link href="/css/AddCalEvent.css" rel="stylesheet">
+</head>
+<body>
+    <form method="post" action="./events" id="ctl01">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['ctl01'];
+if (!theForm) {
+    theForm = document.ctl01;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZHGVlZJ3kI4jRpWI_Zrc1-Gvux5AYRPtLqP0SGOQ_XCt5h2DfHku9zNvjfITVn5jaA2&amp;t=638627955619783110" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=NJmAwtEo3Ipnlaxl6CMhvnx2jK9tV6PrPR4zEsgD7i6HN5bQrOtpnJ4GXQj7h5bPYvhE43-YuSghGjhCleWzw6vnIe24mw2s5tHPjI7R8MCJ-xF9JbZssySyTHd9-q-Jsh95x5nuFW8qyNHvEpDVXaavQ2iH1froCLzU_N278N01&amp;t=2a9d95e3" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=dwY9oWetJoJoVpgL6Zq8OH98DQ3WwGWY4JsnKiAQvZYLwSjCZXqt4ZRw0jztTghpJiLZXC1l3JNEh11UlamAK2QHnQEeerUL38GD81JaGGnjsQEt5fUKoUjpVYf_NRsX5FLM004i79343bPsvtvvns9klxf-V6XW5pfZs0UVX-I1&amp;t=2a9d95e3" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="ADA4D364" />
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0" />
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+</div>
+        <header class="shadow">
+            <nav id="topnavrow" class="navbar navbar-expand-xl navbar-dark bg-primary-dark">
+                <ul class="navbar-nav bg-night navbar-p">
+                    <li class="nav-item">
+                        <span class="nav-link" id="btnAppsLauncher" title="Apps Launcher" data-step="1" data-intro="<label>Apps Launcher</label><br/>Jump to any of our apps from here" data-position='right'><i class='fas fa-th fa-fw fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></span>
+                    </li>
+                </ul>
+
+                <a class="navbar-brand px-4 border-right bold text-uppercase d-none d-xl-block" title="Go to main LAHSA website" href="/">LAHSA </a>
+
+                <a id="hlAppTitle" class="navbar-brand pl-2 mr-auto" title="Home Page for this site" href="/"><span class='d-none d-lg-block'>Los Angeles Homeless Services Authority</span><span class='d-lg-none'>LAHSA</span></a>
+
+                <div id="pnlSearchBar" class="d-none d-sm-block form-inline mt-md-0 mr-lg-2" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;btnGlobalSearch&#39;)">
+	
+                    <section class="input-group">
+                        <input name="ctl00$txtSearchGlobal" type="text" id="txtSearchGlobal" class="form-control" placeholder="Search" aria-label="Search" />
+                        <section class="input-group-append">
+                            <a id="btnGlobalSearch" class="btn btn-secondary" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$btnGlobalSearch&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))"><i class='fas fa-search fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></a>
+                        </section>
+                    </section>
+                
+</div>
+
+                <ul class="navbar-nav text-center navbar-p bg-night" id="pnlAccount">
+                    
+                    <li class="nav-item dropdown d-none d-xl-block" data-step="2" data-intro="<label>Support Center</label><br/>Get help on various topics" data-position='bottom'>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class='fas far fa-question-circle fa-fw fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>  Help
+                        </a>
+                        <section class="dropdown-menu text-center text-lg-left dropdown-menu-right" aria-labelledby="dLabel">
+                            <a href="/support" class="dropdown-item"><i class='fas far fa-question-circle fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;Support Center</a>
+                            <a id="hlHelpCenter" class="dropdown-item" href="/support/grievance" target="_blank"><i class="fas fa-flag-alt fa-fw"></i>&nbsp;Grievance</a>
+                            <a id="hlContactUs" class="dropdown-item" href="/support/contact-us" target="_blank"><i class='fas fa-phone fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;Contact Us</a>
+                        </section>
+                    </li>
+                    
+                            <li class="nav-item">
+                                <a href='/portal/user/sign-in?ReturnUrl=%2fevents' class="nav-link"><i class='fas fa-sign-in fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></i><span class="hidden-sm">&nbsp;Sign In</span></a>
+                            </li>
+                        
+                </ul>
+
+                <div id="pnlNavBarToggler" class="d-inline">
+	
+                    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#globalNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" title="Menu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                
+</div>
+
+
+            </nav>
+            <nav id="masterNav" class="navbar navbar-expand-xl py-0 navbar-light bg-light">
+                <section class="collapse navbar-collapse" id="globalNav">
+                    <ul class="navbar-nav mx-auto text-center">
+                        <li class='nav-item' id='home'><a  href='/' class='nav-link'  ><span>Home</span></a></li><li class='nav-item' id='about'><a  href='/about' class='nav-link'  ><span>About</span></a></li><li class='nav-item' id=''><a  href='/ces/' class='nav-link' target='_blank' ><span>CES</span></a></li><li class='nav-item' id='get_help'><a  href='/get-help' class='nav-link'  ><span>Get Help</span></a></li><li class='nav-item' id='get_involved'><a  href='/get-involved' class='nav-link'  ><span>Get Involved</span></a></li><li class='nav-item' id='providers'><a  href='/portal' class='nav-link'  ><span>Providers</span></a></li><li class='nav-item' id='newsroom'><a  href='/newsroom' class='nav-link'  ><span>News</span></a></li><li class='nav-item' id='documents'><a  href='/documents' class='nav-link'  ><span>Documents</span></a></li><li class='nav-item' id='calendar'><a  href='/events' class='nav-link'  ><span>Calendar</span></a></li><li class='nav-item' id='data'><a  href='/data-refresh' class='nav-link'  ><span>Data</span></a></li><li class='nav-item' id='jobs'><a  href='/jobs' class='nav-link'  ><span>Jobs</span></a></li>
+                        <li class="nav-item dropdown" id="tools">
+                            
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Accessibility Tools
+                            </a>
+                            
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="row">
+                                    <div class="col-6 pr-0">
+                                        <a id="increase" class="dropdown-item  text-center" href="#"><i class="fal fa-search-plus"></i></a>
+                                    </div>
+                                    
+                                    <div class="col-6 pl-0">
+                                        <a  id="decrease" class="dropdown-item  text-center" href="#"><i class="fal fa-search-minus"></i></a>
+                                    </div>
+                                </div>
+                                <a id="grayscale" class="dropdown-item  text-center" href="#">Grayscale</a>
+                                <a id="highContrast" class="dropdown-item  text-center" href="#">High Contrast</a>
+                                
+                            </div>
+
+                       </li>
+                    </ul>
+                    <div id="google_translate_element" class="navbar-nav">
+
+                    </div>
+
+                    
+                </section>
+            </nav>
+        </header>
+        <main role="main" onclick="toogleAppsLauncherOutOfLauncher()">
+            <section id='appsLauncher' class='apps-launcher shadow bg-white d-none'><label id='btnCloseAppsLauncher' class='dropdown-header bold text-uppercase text-primary p-3 border-bottom ml-auto' style='cursor: pointer;'><i class='fas fa-th fa-fw fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> Launcher</label><label class='dropdown-header text-primary bold text-uppercase'>General</label><nav class='navbar navbar-dark bg-primary-dark'><a  href='/' class='text-light'  data-toggle='tooltip' data-placement='right' title='LAHSA Home'><span><i class='fas fa-home fa-fw fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></span></a><a  href='/documents' class='text-light'  data-toggle='tooltip' data-placement='right' title='Documents'><span><i class='fas fa-copy fa-fw  fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></span></a><a  href='/events' class='text-light'  data-toggle='tooltip' data-placement='right' title='Events'><span><i class='fas fa-calendar-alt fa-fw  fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></span></a><a  href='/videos' class='text-light'  data-toggle='tooltip' data-placement='right' title='Videos'><span><i class='fas fab fa-youtube fa-fw  fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></span></a><a  href='/dashboards' class='text-light'  data-toggle='tooltip' data-placement='right' title='Data'><span><i class='fas fa-chart-bar fa-fw  fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></span></a></nav><label class='dropdown-header text-primary bold text-uppercase'>Apps</label><a  href='/portal/HCC/UHCDashboard' class='dropdown-item'  ><i class='fas fa-globe fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>Universal Housing App <span class='badge badge-secondary'>NEW</span></span></a><a  href='/capacity-building' class='dropdown-item'  ><i class='fas fa-graduation-cap fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>Capacity Building</span></a><a  href='/coc' class='dropdown-item'  ><i class='fas fa-universal-access fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>Continuum of Care</span></a><a  href='/ces' class='dropdown-item'  ><i class='fas fa-chart-network fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>Coordinated Entry System</span></a><a  href='/fileshare' class='dropdown-item'  ><i class='fas fa-cloud-upload fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>FileShare</span></a><a  href='/funding' class='dropdown-item'  ><i class='fas fa-hand-holding-seedling fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>Funding</span></a><a  href='/hmis' class='dropdown-item'  ><i class='fas fa-gem fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>HMIS</span></a><a  href='/homeless-count' class='dropdown-item'  ><i class='fas fa-hands fa-flip-vertical fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>Homeless Count</span></a><a  href='/portal/apps/housing-resource/' class='dropdown-item'  ><i class='fas fa-home fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>Resource Management System</span></a><a  href='/portal/apps/housing-extension/' class='dropdown-item'  ><i class='fas fa-plus-circle fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>Housing Extension</span></a><a  href='/portal/apps/la-hop' class='dropdown-item'  ><i class='fas fa-heart fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>LA-HOP</span></a><a  href='/policy/legislative-affairs' class='dropdown-item'  ><i class='fas fa-university fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>Legislative Affairs</span></a><a  href='/portal/myorg/' class='dropdown-item'  ><i class='fas fa-building fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>MyOrg</span></a><a  href='/portal/people/' class='dropdown-item'  ><i class='fas fa-users fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>People <span class='badge badge-secondary'>New</span></span></a><a  href='/policy' class='dropdown-item'  ><i class='fas fa-book fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>Policy</span></a><a  href='/portal/apps/veterans' class='dropdown-item'  ><i class='fas fa-angle-double-down fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>Veterans By Name</span></a><a  href='https://lahsaegms.my.salesforce-sites.com/' class='dropdown-item'  ><i class='fas fa-handshake fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>EGMS (LAHSA staff)</span></a><a  href='https://lahsaegms.my.site.com/' class='dropdown-item'  ><i class='fas fa-handshake fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript>&nbsp;<span>EGMS</span></a><section class='dropdown-divider'></section><a  href='/portal/' class='dropdown-item text-primary text-right text-uppercase'  ><span>All Apps <i class='fas fa-chevron-right fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></span></a></section>
+            
+
+            
+            
+            
+            <section class="container-fluid px-0">
+                <section class="row no-gutters">
+                    
+                    <div id="pnlBody" class="col-lg-12">
+	
+                        <section class="full-screen">
+                            
+                            
+                            
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$bodycontent$ScriptManager1', 'ctl01', ['tctl00$bodycontent$UpdatePanel1','bodycontent_UpdatePanel1'], [], [], 90, 'ctl00');
+	//]]>
+</script>
+
+    <div id="bodycontent_UpdateProgress1" style="display:none;">
+		
+            <div class="loading">Loading&#8230;</div>
+        
+	</div>
+    <div id="bodycontent_UpdatePanel1">
+		
+            <input type="hidden" name="ctl00$bodycontent$hfEventID" id="bodycontent_hfEventID" />
+            <input type="hidden" name="ctl00$bodycontent$hfAllDay" id="hfAllDay" />
+            <input type="hidden" name="ctl00$bodycontent$hfStartdate" id="hfStartdate" />
+            <input type="hidden" name="ctl00$bodycontent$hfEndDate" id="hfEndDate" />
+            <input type="hidden" name="ctl00$bodycontent$hfAddress" id="hfAddress" />
+
+            
+
+                    <section id='carousel' class='carousel slide d-print-none' data-ride='carousel'> <section class='carousel-inner' role='listbox'><section class='carousel-item active'><section style = "background: url('https://www.lahsa.org/service/get-image?id=13dd26e7-c929-4115-96bb-87a6ec41fe83.jpg') center center; background-size: cover;" class='slider-size'><section class='carousel-caption bg-dark-fade'><h1>Events at LAHSA</h1> </section> </section>  </section>  </section> </section>
+
+                    <section class="container">
+                        <section class="row pt-3">
+                            <section class="col-lg-4">
+                                <h2>Calendars</h2>
+                                <section class="list-group mb-3">
+                                    <a href="/events" class="list-group-item list-group-item-action">
+                                        <i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> All
+                                    </a>
+                                    
+                                            <a href="events?cal=3-commission" class="list-group-item list-group-item-action ">
+                                                <i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> Commission<span class='badge badge-primary float-right'>2</span> 
+                                            </a>
+                                        
+                                            <a href="events?cal=9-la-coc-board" class="list-group-item list-group-item-action ">
+                                                <i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> LA CoC Board<span class='badge badge-primary float-right'>1</span> 
+                                            </a>
+                                        
+                                            <a href="events?cal=11-ces-policy-council" class="list-group-item list-group-item-action ">
+                                                <i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> CES Policy Council<span class='badge badge-primary float-right'>15</span> 
+                                            </a>
+                                        
+                                </section>
+                            </section>
+                            <section class="col-lg-8">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col">
+                                        <h2>Upcoming Events</h2>
+                                    </div>
+                                    <div class="col-auto">
+                                        
+                                    </div>
+                                </div>
+                                
+                                <section class="list-group">
+                                    
+                                            <a href="events?e=1412-ces-policy-council-meeting-canceled" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">THIS WEDNESDAY</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> CES Policy Council</span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">CES Policy Council Meeting - Canceled</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1415-la-coc-board-hmis-committee-meeting" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">JANUARY 08</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> </span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">LA COC BOARD HMIS COMMITTEE MEETING</h3>
+                                                                <p class='text-muted'><b>1</b> people going</p>
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1414-la-coc-board-regular-meeting" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">JANUARY 08</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> LA CoC Board</span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">LA CoC Board Regular Meeting</h3>
+                                                                <p class='text-muted'><b>5</b> people going</p>
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1417-programs-contracts-committee" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">JANUARY 17</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> Commission</span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">PROGRAMS & CONTRACTS COMMITTEE</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1429-finance-committee" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">JANUARY 17</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> </span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">FINANCE COMMITTEE</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1441-lahsa-commission" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">JANUARY 24</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> </span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">LAHSA COMMISSION</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1397-ces-policy-council-meeting" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">JANUARY 29</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> CES Policy Council</span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">CES POLICY COUNCIL MEETING</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1418-programs-contracts-committee" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">FEBRUARY 21</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> Commission</span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">PROGRAMS & CONTRACTS COMMITTEE</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1430-finance-committee" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">FEBRUARY 21</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> </span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">FINANCE COMMITTEE</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1398-ces-policy-council-meeting" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">FEBRUARY 26</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> CES Policy Council</span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">CES POLICY COUNCIL MEETING</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1442-lahsa-commission" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">FEBRUARY 28</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> </span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">LAHSA COMMISSION</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1419-programs-contracts-committee" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">MARCH 21</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> </span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">PROGRAMS & CONTRACTS COMMITTEE</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1431-finance-committee" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">MARCH 21</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> </span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">FINANCE COMMITTEE</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1399-ces-policy-council-meeting" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">MARCH 26</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> CES Policy Council</span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">CES POLICY COUNCIL MEETING</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                            <a href="events?e=1443-lahsa-commission" class="list-group-item list-group-item-action ">
+                                                <section class="media m-0">
+                                                    <section class="media-body">
+                                                        <section class="row">
+                                                            <section class="col-md-4 border-right border-light border-2 pb-1 text-md-center">
+                                                                <span class="text-secondary">MARCH 28</span><br />
+                                                                <span class="text-primary"><i class='fas fa-calendar-alt fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript> </span>
+
+
+                                                            </section>
+                                                            <section class="col-md-8">
+                                                                <h3 class="h6">LAHSA COMMISSION</h3>
+                                                                
+                                                            </section>
+                                                        </section>
+                                                    </section>
+
+
+                                                </section>
+                                            </a>
+                                        
+                                </section>
+                                <span id="bodycontent_DataPager2" class="btn-group btn-group-sm"><a class="aspNetDisabled btn btn-link"><i class="fa fa-fw fa-lg fa-chevron-left" aria-hidden="true" title="Previous"></i></a>&nbsp;<span class="btn btn-secondary disabled">1</span><a class="btn btn-link" href="/events.aspx?p=2">2</a><a class="btn btn-link" href="/events.aspx?p=3">3</a><a class="btn btn-link" href="/events.aspx?p=4">4</a><a class="btn btn-link" href="/events.aspx?p=2"><i class="fa fa-fw fa-lg fa-chevron-right" aria-hidden="true" title="Next"></i></a>&nbsp;</span>
+                            </section>
+                        </section>
+                    </section>
+                
+        
+	</div>
+    
+
+                        </section>
+                        <button id="btnScrollToTop" class="btn btn-secondary btn-small rounded-0 shadow-lg opacity-5" title="Go to top"><i class='fas fa-caret-up fa-fw ' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></button>
+                    
+</div>
+                </section>
+                <footer class="footer d-print-none border-top pt-3 bg-light" id="pnlFooter">
+                    <section class="container">
+                        
+                        
+                        <section class="row">
+                            <section class="col-md-9">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><a href="/about">About</a></li>
+                                    <li class="list-inline-item"><a href="/jobs">Jobs</a></li>
+                                    <li class="list-inline-item"><a href="/news">News</a></li>
+                                    <li class="list-inline-item"><a href="/privacy.aspx">Privacy Policy</a></li>
+                                    <li class="list-inline-item"><a href="/support.aspx">Support</a></li>
+                                </ul>
+                            </section>
+                            <section class="col-md-3 text-center">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/lahsa.org/" target="_blank" data-toggle="tooltip" data-placement="left" title="Visit us on Facebook"><i class='fas fab fa-facebook-square fa-fw fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/LAHomeless" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Follow us on Twitter"><i class='fas fab fa-twitter-square fa-fw fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></a></li>
+                                    <li class="list-inline-item"><a href="https://www.instagram.com/lahomelessservices/" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Follow us on Instagram"><i class='fas fab fa-instagram fa-fw fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></a></li>
+                                    <li class="list-inline-item"><a href="https://www.youtube.com/user/LAHSAIT" target="_blank" data-toggle="tooltip" data-placement="right" title="Watch us on YouTube"><i class='fas fab fa-youtube fa-fw fa-lg' data-fa-transform='' aria-hidden='true'></i><noscript>JS error</noscript></a></li>
+                                </ul>
+                            </section>
+                        </section>
+
+                        <section class="row justify-content-between">
+                            <section class="col-6">
+                                <p>
+                                    <a href="/">
+                                        
+                                        <span class="d-none d-md-inline">Los Angeles Homeless Services Authority</span>
+                                    </a>
+                                </p>
+                            </section>
+                            <section class="col-md-3 text-center d-none d-md-inline">
+                                
+                                
+                            </section> 
+                            
+                            <section class="col-md-3 text-center d-none d-md-inline">
+                                <section>
+                                    <a href="https://www.translatetheweb.com/?from=&to=es&ref=trb_ct&dl=en&rr=HE&a=https%3a%2f%2fwww.lahsa.org%2f">Translate in IE</a>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </footer>
+                <section id="snackbar-container">
+                    <section class="snackbar">
+                        <span id="snackbar-content"></span>
+                    </section>
+                </section>
+            </section>
+        </main>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+Sys.Application.add_init(function() {
+    $create(Sys.UI._UpdateProgress, {"associatedUpdatePanelId":"bodycontent_UpdatePanel1","displayAfter":500,"dynamicLayout":true}, null, null, $get("bodycontent_UpdateProgress1"));
+});
+//]]>
+</script>
+</form>
+    <!-- Google Translate -->
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <div id="PnlGoogleAnalytics">
+	
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS8V4VFZ5S"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'G-YS8V4VFZ5S');
+        </script>
+        <!--THE BELOW CODE WAS FOR UA which depecrated 7.1.23 -->
+        <!-- Google Analytics Code --> 
+
+        <!-- End Google Analytics Code -->
+    
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    <script defer src="https://pro.fontawesome.com/releases/v5.14.0/js/all.js" integrity="sha384-8nFttujfhbCh3CZJ34J+BtLPrg9cGflbku3ZQUTUewA7mqA8TG5Uip4fzQRbERs0" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js" integrity="sha256-fOPHmaamqkHPv4QYGxkiSKm7O/3GAJ4554pQXYleoLo=" crossorigin="anonymous"></script>
+    <script src="/js/code.js?v=137.0.3"></script>
+    <script src="/js/fetchWrapper.js?v=0.0.4"></script>
+    <script>
+        isFirstTime('beenHereBefore_master');
+    </script>
+    <script>
+        function toogleAppsLauncherOutOfLauncher() {
+            const id = document.getElementById('appsLauncher')
+            if (!id.classList.contains('d-none')) {
+                id.classList.add('d-none', 'animated', 'fadeIn', 'faster');
+            }
+        }
+       
+    </script>
+    
+    <script src="/js/AddCalEventZones.min.js"></script>
+    <script src="/js/AddCalEvent.min.js"></script>
+    <script>
+        activateTab("#calendar");
+        var title = $('#lblEventTitle').text();
+        var note = $('#lblNotes').text();
+        var LOCATION = $('#lblLocation').text();
+        var startdate = $('#hfStartdate').val();
+        var enddate = $('#hfEndDate').val();
+        var isAllDay = $('#hfAllDay').val().toLowerCase();
+        $("#btnAddtoClass").addcalevent({
+            'data': {
+                "title": title,
+                "desc": note,
+                "location": LOCATION,
+                "url": window.location,
+                "time": {
+                    "start": startdate,
+                    "end": enddate,
+                    "zone": "-07:00",
+                    "allday": isAllDay
+                },
+            },
+            'ics': window.location + "&dl=true",
+            onclick: true, //Enables button to dropdown on click event
+            linkText: [ // Array containing the applications available to the user. Do not
+                'Outlook',
+                'Google Calendar',
+                'Yahoo Calendar',
+                'Outlook Online',
+                'iCal Download'
+            ]
+        });
+
+        function editNotesEventUpdate() {
+            CKEDITOR.instances["txtNotes"].updateElement();
+            const ckEdVal = CKEDITOR.instances["txtNotes"].getData();
+            document.getElementById("txtNotes").value = ckEdVal;
+            var val = Page_ClientValidate();
+            if (!val) {
+                return false;
+            }
+            return true;
+        }
+
+        $(document).ready(function () {
+            $("#bodycontent_btnCreateEvent").on('click', function () {
+                editNotesEventUpdate();
+            });
+
+            $("#bodycontent_btnUpdateEvent").on('click', function () {
+                editNotesEventUpdate();
+            });
+
+            if ("False" == "True" || "False" == "True") {
+                document.getElementById("cbIsOnline").addEventListener('change', function () {
+                    if (document.getElementById("cbIsOnline").checked) {
+                        document.getElementById("bodycontent_pnlLocation").style.display = "";
+                        document.getElementById("bodycontent_txtLocation").textContent = "LAHSA, 707 Wilshire Blvd, 10th Floor, Los Angeles, CA 90017";
+                        document.getElementById("PnlOnlineUrl").style.display = ""
+                    } else {
+                        document.getElementById("PnlOnlineUrl").style.display = "none"
+                    }
+                });
+
+                document.getElementById("cbAllDay").addEventListener('change', function () {
+                    //txtEndDate.Text = CDate(txtStartDate.Text).ToString("yyyy-MM-dd")
+                    if (document.getElementById("cbAllDay").checked) {
+                        document.getElementById("txtEndDate").textContent = "";
+
+                        document.getElementById("txtEndDate").disabled = true;
+
+                        document.getElementById("bodycontent_ddlStartTime").selectedIndex = "0";
+                        document.getElementById("bodycontent_ddlStartTime").disabled = true;
+
+                        document.getElementById("bodycontent_ddlEndTime").selectedIndex = "0";
+                        document.getElementById("bodycontent_ddlEndTime").disabled = true;
+                    } else {
+                        document.getElementById("txtEndDate").disabled = false;
+                        document.getElementById("bodycontent_ddlStartTime").disabled = false;
+                        document.getElementById("bodycontent_ddlEndTime").disabled = false;
+                    }
+                });
+            }
+        })
+    </script>
+
+
+</body>
+</html>
