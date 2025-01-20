@@ -29,7 +29,7 @@ jobs:
 
       - name: Install Pipenv
         run: pip install --user pipenv
-          
+
       - name: Install dependencies
         run: pipenv sync --dev
         env:
